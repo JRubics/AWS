@@ -1,0 +1,12 @@
+version: '3'
+
+services:
+  flask:
+    build: .
+    image: jrubics/flaskapp
+    restart: unless-stopped
+    container_name: flask
+    environment:
+    - PERSON=jelena
+    ports:
+      - 8080:8080

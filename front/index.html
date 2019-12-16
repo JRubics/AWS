@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body onload="loadDoc()">
+
+<h1>Hello! :D</h1>
+
+<p id="visits"></p>
+
+<script src="https://unpkg.com/axios/dist/axios.min.js"></script>
+<script>
+loadDoc = () => {
+  axios.get('http://ec2-3-120-157-140.eu-central-1.compute.amazonaws.com/')
+  .then(function (response) {
+    document.getElementById("visits").innerHTML = response.data
+  })
+  .catch(function (error) {
+    alert(error);
+  })
+}
+</script>
+
+</body>
+</html>

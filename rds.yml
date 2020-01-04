@@ -68,9 +68,11 @@ Resources:
   
   MasterDB:
     Type: AWS::RDS::DBInstance
+    DeletionPolicy: Delete
     Properties:
       DBName: !Ref 'DBName'
       AllocatedStorage: !Ref 'DBAllocatedStorage'
+      BackupRetentionPeriod: 0
       DBInstanceClass: 'db.t2.micro'
       Engine: postgres
       EngineVersion: '11.5'
@@ -82,7 +84,6 @@ Resources:
       VPCSecurityGroups: !If [Is-EC2-VPC, [!GetAtt [DBEC2SecurityGroup, GroupId]],
         !Ref 'AWS::NoValue']
       DBSecurityGroups: !If [Is-EC2-Classic, [!Ref 'DBSecurityGroup'], !Ref 'AWS::NoValue']
-    DeletionPolicy: Snapshot
 
 Outputs:
   EC2Platform:
